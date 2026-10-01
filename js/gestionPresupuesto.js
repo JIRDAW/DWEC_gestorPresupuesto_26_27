@@ -3,8 +3,17 @@
 // TODO: Variable global
 let presupuesto = 0;
 
-function actualizarPresupuesto() {
-    // TODO
+function actualizarPresupuesto(nuevoPresupuesto) {
+    if (typeof nuevoPresupuesto === 'number' && !isNaN(nuevoPresupuesto) && nuevoPresupuesto >= 0)
+    {
+            presupuesto = nuevoPresupuesto;
+            return presupuesto
+    }
+    else 
+    {
+        console.error("El presupuesto debe ser un número no negativo.");
+        return -1;
+    }
 }
 
 function mostrarPresupuesto() {
