@@ -92,8 +92,18 @@ function listarGastos() {
     return gastos;
 }
 
-function anyadirGasto() {}
-function borrarGasto() {}
+function anyadirGasto(gasto) {
+    gasto.id = idGasto;
+    idGasto++;
+    gastos.push(gasto);
+}
+
+function borrarGasto(id) {
+    let index = gastos.findIndex(g => g.id === id);
+    if (index !== -1) {
+        gastos.splice(index, 1);
+    }
+}
 function calcularTotalGastos() {}
 function calcularBalance() {}
 
