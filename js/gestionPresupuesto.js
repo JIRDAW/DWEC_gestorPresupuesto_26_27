@@ -41,6 +41,22 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
 
     this.etiquetas = [];
 
+    this.anyadirEtiquetas = function (...nuevasEtiquetas) {
+        for (let etiqueta of nuevasEtiquetas) {
+            if (!this.etiquetas.includes(etiqueta)) {
+                this.etiquetas.push(etiqueta);
+            }
+        }
+    };
+
+    this.borrarEtiquetas = function (...etiquetasABorrar) {
+        this.etiquetas = this.etiquetas.filter(etiqueta => !etiquetasABorrar.includes(etiqueta));
+    };
+
+    if (etiquetas.length > 0) {
+        this.anyadirEtiquetas(...etiquetas);
+    }
+
     this.mostrarGasto = function () {
         return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
     };
