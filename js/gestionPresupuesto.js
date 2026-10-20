@@ -128,6 +128,32 @@ function calcularBalance() {
 }
 
 function filtrarGastos(filtros = {}) {
+    return gastos.filter(gasto => {
+        if (filtros.fechaDesde && gasto.fecha < Date.parse(filtros.fechaDesde)) {
+            return false;
+        }
+        if (filtros.fechaHasta && gasto.fecha > Date.parse(filtros.fechaHasta)) {
+            return false;
+        }
+        if (filtros.valorMinimo !== undefined && gasto.valor < filtros.valorMinimo) {
+            return false;
+        }
+        if (filtros.valorMaximo !== undefined && gasto.valor > filtros.valorMaximo) {
+            return false;
+        }
+        if (filtros.descripcionContiene && !gasto.descripcion.toLowerCase().includes(filtros.descripcionContiene.toLowerCase())) {
+            return false;
+        }
+        if (filtros.etiquetasTiene && filtros.etiquetasTiene.length > 0) {
+            let tiene = filtros.etiquetasTiene.some(eti => 
+                gasto.etiquetas.some(ge => ge.toLowerCase() === eti.toLowerCase())
+            );
+            if (!tiene) {
+                return false;
+            }
+        }
+        return true;
+    });
 }
 
 function agruparGastos(periodo, etiquetas, fechaDesde, fechaHasta) {
