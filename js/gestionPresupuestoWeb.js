@@ -121,6 +121,25 @@ if (botonActualizarPresupuesto) {
     botonActualizarPresupuesto.addEventListener("click", actualizarPresupuestoWeb);
 }
 
+function nuevoGastoWeb() {
+    const descripcion = prompt("Introduce la descripción del gasto:");
+    const valorTexto = prompt("Introduce el valor del gasto:");
+    const fecha = prompt("Introduce la fecha del gasto (yyyy-mm-dd):");
+    const etiquetasTexto = prompt("Introduce las etiquetas separadas por comas:");
+
+    const valor = Number(valorTexto);
+    const etiquetas = etiquetasTexto ? etiquetasTexto.split(",") : [];
+
+    const gasto = new gestionPresupuesto.CrearGasto(descripcion, valor, fecha, ...etiquetas);
+    gestionPresupuesto.anyadirGasto(gasto);
+    repintar();
+}
+
+const botonAnyadirGasto = document.getElementById("anyadirgasto");
+if (botonAnyadirGasto) {
+    botonAnyadirGasto.addEventListener("click", nuevoGastoWeb);
+}
+
 export {
     mostrarDatoEnId,
     mostrarGastoWeb,
