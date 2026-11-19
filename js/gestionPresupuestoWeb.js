@@ -107,6 +107,20 @@ function repintar() {
     }
 }
 
+function actualizarPresupuestoWeb() {
+    const presupuestoTexto = prompt("Introduce un nuevo presupuesto:");
+    if (presupuestoTexto !== null) {
+        const presupuestoValor = Number(presupuestoTexto);
+        gestionPresupuesto.actualizarPresupuesto(presupuestoValor);
+        repintar();
+    }
+}
+
+const botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
+if (botonActualizarPresupuesto) {
+    botonActualizarPresupuesto.addEventListener("click", actualizarPresupuestoWeb);
+}
+
 export {
     mostrarDatoEnId,
     mostrarGastoWeb,
