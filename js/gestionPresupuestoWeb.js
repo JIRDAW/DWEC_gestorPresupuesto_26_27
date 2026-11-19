@@ -140,6 +140,28 @@ if (botonAnyadirGasto) {
     botonAnyadirGasto.addEventListener("click", nuevoGastoWeb);
 }
 
+function EditarHandle() {
+    this.handleEvent = function (evento) {
+        const fechaDefecto = new Date(this.gasto.fecha).toISOString().slice(0, 10);
+        const etiquetasDefecto = this.gasto.etiquetas.join(",");
+
+        const descripcion = prompt("Introduce la descripción del gasto:", this.gasto.descripcion);
+        const valorTexto = prompt("Introduce el valor del gasto:", this.gasto.valor);
+        const fecha = prompt("Introduce la fecha del gasto (yyyy-mm-dd):", fechaDefecto);
+        const etiquetasTexto = prompt("Introduce las etiquetas separadas por comas:", etiquetasDefecto);
+
+        const valor = Number(valorTexto);
+        const etiquetas = etiquetasTexto ? etiquetasTexto.split(",") : [];
+
+        this.gasto.actualizarValor(valor);
+        this.gasto.actualizarDescripcion(descripcion);
+        this.gasto.actualizarFecha(fecha);
+        this.gasto.anyadirEtiquetas(...etiquetas);
+
+        repintar();
+    };
+}
+
 export {
     mostrarDatoEnId,
     mostrarGastoWeb,
