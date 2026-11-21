@@ -162,6 +162,13 @@ function EditarHandle() {
     };
 }
 
+function BorrarHandle() {
+    this.handleEvent = function (evento) {
+        gestionPresupuesto.borrarGasto(this.gasto.id);
+        repintar();
+    };
+}
+
 export {
     mostrarDatoEnId,
     mostrarGastoWeb,
