@@ -63,6 +63,17 @@ function mostrarGastoWeb(idElemento, gasto) {
 
     divGasto.appendChild(botonEditar);
 
+    const botonBorrar = document.createElement("button");
+    botonBorrar.type = "button";
+    botonBorrar.classList.add("gasto-borrar");
+    botonBorrar.textContent = "Borrar";
+
+    const manejadorBorrar = new BorrarHandle();
+    manejadorBorrar.gasto = gasto;
+    botonBorrar.addEventListener("click", manejadorBorrar);
+
+    divGasto.appendChild(botonBorrar);
+
     contenedor.appendChild(divGasto);
 }
 
