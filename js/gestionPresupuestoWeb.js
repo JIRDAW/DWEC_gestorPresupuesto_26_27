@@ -52,6 +52,17 @@ function mostrarGastoWeb(idElemento, gasto) {
     divGasto.appendChild(divValor);
     divGasto.appendChild(divEtiquetas);
 
+    const botonEditar = document.createElement("button");
+    botonEditar.type = "button";
+    botonEditar.classList.add("gasto-editar");
+    botonEditar.textContent = "Editar";
+
+    const manejadorEditar = new EditarHandle();
+    manejadorEditar.gasto = gasto;
+    botonEditar.addEventListener("click", manejadorEditar);
+
+    divGasto.appendChild(botonEditar);
+
     contenedor.appendChild(divGasto);
 }
 
